@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoCidade.Models;
 using ProjetoCidade.Repositorio;
-using ProjetoCidade.Models;
-using ProjetoCidade.Repositorio;
-
 
 
 //DEFINE O NOME E ONDE A CLASSE USURIOCONTROLLER ESTÁ LOCALIZADA
