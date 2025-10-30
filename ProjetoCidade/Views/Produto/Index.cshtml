@@ -1,4 +1,4 @@
-﻿@model ProjetoCidade.Models.Produto;
+﻿@model List<ProjetoCidade.Models.Produto>;
 
 @{
     ViewData["Title"] = "Produtos";
@@ -7,11 +7,35 @@
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h1 class="fw-bold text-primary mb-1">Produtos</h1>
+            <h1 class="fw-bold text-dark mb-1">Produtos</h1>
             <p class="text-muted mb-0">Gerencie os produtos cadastros e cadastre outros produtos.</p>
         </div>
-        <a asp-controller="Produto" asp-action="Cadastrar" class="btn btn-lg btn-success shadow-sm">
+        <a asp-controller="Produto" asp-action="Cadastrar" class="btn btn-lg btn-dark shadow-sm">
             <i class="bi bi-plus-circle me-2"></i> Novo Produto
         </a>
     </div>
+</div>
+
+<div class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var produto in Model)
+            {
+                <tr>
+                    <td>@produto.nome</td>
+                    <td>@produto.descricao</td>
+                    <td>@produto.preco.ToString("C")</td>
+                    <td>@produto.quantidade</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

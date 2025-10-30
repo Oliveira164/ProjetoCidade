@@ -32,7 +32,8 @@ namespace ProjetoCidade.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var produtos = _produtoRepositorio.ObterProduto();
+            return View(produtos);
         }
     }
 }

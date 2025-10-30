@@ -39,46 +39,35 @@ namespace ProjetoCidade.Repositorio
 
         //Método buscar todos os produtos
 
-        public Produto ObterProduto(string nome)
+        public List<Produto> ObterProduto()
         {
+            var produtos = new List<Produto>();
+
             // Cria uma nova instância da conexão MySQL dentro de um bloco 'using'.
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
-                // Abre a conexão com o banco de dados MySQL.
-                conexao.Open();
-                // Cria um novo comando SQL para selecionar todos os campos da tabela 'Produto' onde o campo 'nome' corresponde ao parâmetro fornecido.
-                MySqlCommand cmd = new("SELECT * FROM Produto WHERE nome = @nome", conexao);
-                // Adiciona um parâmetro ao comando SQL para o campo 'Nome', especificando o tipo como VarChar e utilizando o valor do parâmetro 'nome'.
-                cmd.Parameters.Add("@nome", MySqlDbType.VarChar).Value = nome;
-
-                // Executa o comando SQL SELECT e obtém um leitor de dados (MySqlDataReader). O CommandBehavior.CloseConnection garante que a conexão
-                // será fechada automaticamente quando o leitor for fechado.
-                using (MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                using (var connection = new MySqlConnection(_conexaoMySQL))
                 {
-                    // Inicializa uma variável 'produto' como null. Ela será preenchida se um produto for encontrado.
-                    Produto produto = null;
-                    // Lê a próxima linha do resultado da consulta. Retorna true se houver uma linha e false caso contrário.
-                    if (dr.Read())
+                    connection.Open();
+                    var query = "SELECT * FROM Produto";
+                    using (var command = new MySqlCommand(query, connection))
+                    using (var reader = command.ExecuteReader())
                     {
-                        // Cria uma nova instância do objeto 'Produto'.
-                        produto = new Produto
+                        while (reader.Read())
                         {
-                            // Lê o valor da coluna "id" da linha atual do resultado, converte para inteiro e atribui à propriedade 'id' do objeto 'produto'.
-                            id = Convert.ToInt32(dr["id"]),
-                            // Lê o valor da coluna "nome" da linha atual do resultado, converte para string e atribui à propriedade 'nome' do objeto 'profuto'.
-                            nome = dr["nome"].ToString(),
-                            // Lê o valor da coluna "descricao" da linha atual do resultado, converte para string e atribui à propriedade 'descricao' do objeto 'produto'.
-                            descricao = dr["descricao"].ToString(),
-                            // Lê o valor da coluna "preco" da linha atual do resultado, converte para string e atribui à propriedade 'preco' do objeto 'produto'.
-                            preco = Convert.ToDecimal(dr["preco"]),
-                            // Lê o valor da coluna "quantidade" da linha atual do resultado, converte para string e atribui à propriedade 'quantidade' do objeto 'produto'.
-                            quantidade = Convert.ToInt32(dr["quantidade"])
-                        };
+                            var produto = new Produto
+                            {
+                                id = reader.GetInt32("id"),
+                                nome = reader.GetString("nome"),
+                                descricao = reader.GetString("descricao"),
+                                preco = reader.GetDecimal("preco"),
+                                quantidade = reader.GetInt32("quantidade")
+                            };
+                            produtos.Add(produto);
+                        }
                     }
-                    /* Retorna o objeto 'produto'. Se nenhum usuário foi encontrado com o email fornecido, a variável 'produto'
-                     permanecerá null e será retornado.*/
-                    return produto;
                 }
+                return produtos;
             }
         }
     }

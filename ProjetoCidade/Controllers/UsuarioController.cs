@@ -38,7 +38,7 @@ namespace ProjetoCidade.Controllers
 
             if (usuario != null && usuario.senha == senha)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Produto");
             }
             ModelState.AddModelError("", "Email / Senha Inválidos");
 
@@ -60,7 +60,7 @@ namespace ProjetoCidade.Controllers
             if (ModelState.IsValid)
             {
                 _usuarioRepositorio.AdicionarUsuario(usuario);
-                return RedirectToAction("Login");
+                return RedirectToAction("Login", "Usuario");
             }
             return View(usuario);
         }
