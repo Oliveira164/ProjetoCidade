@@ -1,0 +1,27 @@
+﻿@model ProjetoCidade.Models.Produto;
+
+@{
+    ViewData["Title"] = "Cadastro de Produto";
+}
+<form asp-action="Cadastrar" method="post">
+    <div>
+        <label>Nome:</label>
+        <input type="text" name="text" required />
+    </div>
+
+    <div>
+        <label>Descrição:</label>
+        <input type="text" name="descricao" required />
+    </div>
+
+    <div>
+        <label>Preço:</label>
+        <input type="number" name="preco" required />
+    </div>
+    
+    <div>
+        <label>Quantidade:</label>
+        <input type="number" name="quantidade" required />
+    </div>
+    <button>Cadastrar</button>
+</form>

@@ -26,7 +26,7 @@ namespace ProjetoCidade.Controllers
             if (ModelState.IsValid)
             {
                 _produtoRepositorio.AdicionarProduto(produto);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Produto");
             }
             return View(produto);
         }
