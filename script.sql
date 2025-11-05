@@ -16,3 +16,7 @@ descricao varchar(80) not null,
 preco decimal(10,2) not null,
 quantidade int not null
 );
+
+select * from Usuario;
+select * from Produto;
+truncate Produto;

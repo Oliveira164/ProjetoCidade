@@ -38,7 +38,6 @@ namespace ProjetoCidade.Repositorio
 
 
         //Método buscar todos os produtos
-
         public List<Produto> ObterProduto()
         {
             var produtos = new List<Produto>();
