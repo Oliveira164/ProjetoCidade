@@ -2,12 +2,37 @@
     ViewData["Title"] = "Página Home";
 }
 
-<div class="container mt-5">
+<link href="./css/home.css" rel="stylesheet" />
+
+<div class="container mt-3">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="fw-bold text-danger mb-1">Sistema de produtos</h1>
+        <div id="header">
+            <h1 class="fw-bold text-danger mb-1">Sistema de Produtos</h1>
             <h2 class="fw-bold text-danger mb-1">Tecnologia de qualidade</h2>
             <p class="text-muted mb-0">Aqui você gerenciará nosso sistema de cadastro de produtos.</p>
         </div>
     </div>
+</div>
+
+<!--SLIDESHOW-->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="./images/morena-escolhe-comida-lady-esta-segurando-um-carrinho-de-compras-garota-de-camisa-branca-no-supermercado.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="./images/mulheres-felizmente-fazendo-compras-ou-comprando-produtos-de-consumo-para-o-dia-cliente.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="./images/pessoa-que-cria-uma-loja-em-linha-e-carrega-produtos-num-portatil_73899-54387.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>

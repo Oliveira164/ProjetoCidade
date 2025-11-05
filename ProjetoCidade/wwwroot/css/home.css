@@ -1,0 +1,28 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+#header{
+    margin: auto;
+    text-align: center;
+}
+
+#header h2 {
+    font-size: 16px;
+}
+
+#carouselExampleControls{
+    width: 70%;
+    height: 50%;
+    justify-self: center;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.carousel-item{
+    max-height: 430px;
+}
