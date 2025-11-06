@@ -1,41 +1,60 @@
-﻿@model List<ProjetoCidade.Models.Produto>;
+﻿@model IEnumerable<ProjetoCidade.Models.Produto>
 
-@{
-    ViewData["Title"] = "Produtos";
-}
 
-<div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h1 class="fw-bold text-dark mb-1">Produtos</h1>
-            <p class="text-muted mb-0">Gerencie os produtos cadastrados e cadastre outros produtos.</p>
-        </div>
-        <a asp-controller="Produto" asp-action="Cadastrar" class="btn btn-lg btn-dark shadow-sm">
-            <i class="bi bi-plus-circle me-2"></i> Novo Produto
-        </a>
-    </div>
-</div>
+<link href="~/css/listaproduto.css" rel="stylesheet" />
 
-<div class="container mt-5">
-    <table class="table table-striped">
-        <thead>
+<h1>Produtos</h1>
+<p>Aqui você poderá ver os produtos cadastrados e clicando no botão você poderá cadastrar um novo produto</p>
+<p>
+    <a asp-controller="Produto" asp-action="Cadastrar" class="btn btn-primary">Cadastra Produto</a>
+</p>
+<table class="table custom-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantidade)
+            </th>
+            <th class="text-center">Ação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>Nome</th>
-                <th>Descrição</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantidade)
+                </td>
+                <td class="text-center">
+                    <a asp-controller="Produto" asp-action="EditarProduto" asp-route-id="@item.id" class="btn btn-sm btn-warning">Editar</a>
+                    <span>|</span>
+                    <a asp-controller="Produto" asp-action="ExcluirProduto" asp-route-id="@item.id"
+                       onclick="return confirm('Deseja realmente Excluir este item?');" class="btn btn-sm btn-danger">Excluir</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var produto in Model)
-            {
-                <tr>
-                    <td>@produto.nome</td>
-                    <td>@produto.descricao</td>
-                    <td>@produto.preco.ToString("C")</td>
-                    <td>@produto.quantidade</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+        }
+    </tbody>
+</table>
